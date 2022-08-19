@@ -4,7 +4,7 @@ const port = 3000;
 const date = require(__dirname + "/date.js");
 
 const app = express();
-
+app.use(express.static(__dirname + "/public"));
 const items = ["Buy Food", "Cook Food", "Eat Food"];
 const workItems = [];
 
@@ -12,7 +12,6 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
 app.get("/", function (req, res) {
   const day = date.getDate();
   res.render("list", { listTitle: day, newListItems: items });
@@ -38,6 +37,4 @@ app.post("/", function (req, res) {
   }
 });
 
-app.listen(port, function () {
-  console.log("App running at port " + port);
-});
+app.listen(process.env.PORT || port);
