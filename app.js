@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -51,6 +52,7 @@ app.post("/", function (req, res) {
       res.redirect("/" + listName);
     });
   }
+
 });
 
 //Remove an item from the database
@@ -77,6 +79,7 @@ app.post("/delete", function (req, res) {
     );
   }
 });
+
 
 // Create an custom collection via dynamic route
 app.get("/:customListName", function (req, res) {
@@ -110,6 +113,7 @@ let populateDefaultItems = function () {
 };
 
 populateDefaultItems();
+
 
 app.get("/about", function (req, res) {
   res.render("about");
