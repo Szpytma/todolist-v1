@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 
-
 const app = express();
 
 app.set("view engine", "ejs");
@@ -11,7 +10,8 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 
-const url = "mongodb://localhost:27017/todolistDB";
+const url =
+  "mongodb+srv://admin:1239875@cluster0.wer1qxy.mongodb.net/todolistDB";
 const port = 3000;
 
 //Creating && connecting to the new db || Connectiong to the already created db
@@ -52,7 +52,6 @@ app.post("/", function (req, res) {
       res.redirect("/" + listName);
     });
   }
-
 });
 
 //Remove an item from the database
@@ -79,7 +78,6 @@ app.post("/delete", function (req, res) {
     );
   }
 });
-
 
 // Create an custom collection via dynamic route
 app.get("/:customListName", function (req, res) {
@@ -113,7 +111,6 @@ let populateDefaultItems = function () {
 };
 
 populateDefaultItems();
-
 
 app.get("/about", function (req, res) {
   res.render("about");
